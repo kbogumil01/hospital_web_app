@@ -1,0 +1,3 @@
+{
+    "json.validate.enable": false //https://github.com/microsoft/tsdoc/issues/253
+}
