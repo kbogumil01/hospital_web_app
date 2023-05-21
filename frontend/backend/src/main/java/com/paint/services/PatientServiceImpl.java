@@ -1,7 +1,6 @@
 package com.paint.services;
 
 import com.paint.entity.PatientEntity;
-import com.paint.entity.UserEntity;
 import com.paint.model.Patient;
 import com.paint.repository.PatientRepository;
 import org.springframework.beans.BeanUtils;
@@ -23,9 +22,6 @@ public class PatientServiceImpl implements PatientService{
     public Patient createPatient(Patient patient){
         PatientEntity patientEntity=new PatientEntity();
         BeanUtils.copyProperties(patient, patientEntity);
-        UserEntity userEntity=new UserEntity();
-        userEntity.setId(patient.getUser().getId());
-        patientEntity.setUser(userEntity);
         patientRepository.save(patientEntity);
         return patient;
     }
@@ -66,19 +62,6 @@ public class PatientServiceImpl implements PatientService{
 
         patientRepository.save(patientEntity);
         return patient;
-    }
-
-    @Override
-    public Patient getPatientByUserId(Long id){
-        try {
-            PatientEntity patientEntity = patientRepository.findByUserId(id);
-            Patient patient= new Patient();
-            BeanUtils.copyProperties(patientEntity, patient);
-            return patient;
-        }catch(Exception e) {
-            //System.out.println("pusto");
-            return null;
-        }
     }
 
 }

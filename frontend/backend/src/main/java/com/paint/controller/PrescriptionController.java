@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
@@ -26,11 +24,6 @@ public class PrescriptionController {
     public ResponseEntity<Prescription> createVisit(@PathVariable Long id, @RequestBody Prescription prescription){
         prescription=prescriptionService.addPrescriptionToPatient(id,prescription);
         return ResponseEntity.ok(prescription);
-    }
-
-    @GetMapping("/getPrescriptions/{id}") //pobranie wizyt danego pacjenta
-    public List<Prescription> getVisitsByUserId(@PathVariable long id){
-        return prescriptionService.getPrescriptionsByUserId(id);
     }
 
 }

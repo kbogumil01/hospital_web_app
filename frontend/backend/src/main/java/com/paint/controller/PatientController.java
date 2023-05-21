@@ -2,7 +2,6 @@ package com.paint.controller;
 
 import com.paint.model.Patient;
 import com.paint.services.PatientService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,17 +52,6 @@ public class PatientController {
                                                  @RequestBody Patient patient){
         patient=patientService.updatePatient(id, patient);
         return ResponseEntity.ok(patient);
-    }
-
-    @GetMapping("/patients/getByUser/{id}") //dziala
-    public ResponseEntity<Patient> getPatientByUserId(@PathVariable Long id){
-        Patient patient=null;
-        patient=patientService.getPatientByUserId(id);
-        if (patient==null){
-            return ResponseEntity.status(400).body(null);
-        }else {
-            return ResponseEntity.ok(patient);
-        }
     }
 
 }

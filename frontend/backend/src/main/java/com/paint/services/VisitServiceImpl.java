@@ -12,8 +12,6 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class VisitServiceImpl implements VisitService{
@@ -36,17 +34,5 @@ public class VisitServiceImpl implements VisitService{
         visitRepository.save(savedVisit);
         BeanUtils.copyProperties(savedVisit, visit);
         return visit;
-    }
-
-    @Override
-    public List<Visit> getVisitsByUserId(long id) {
-        List<VisitEntity> visitEntities = visitRepository.findByPatientId(id);
-
-        List<Visit> visits= visitEntities.stream().map(vis -> new Visit(
-                        vis.getId(),
-                        vis.getDate(),
-                         null)) //przez to null może być newralgiczny punkt
-                .collect(Collectors.toList());
-        return visits;
     }
 }

@@ -32,9 +32,4 @@ public class VisitController {
         return ResponseEntity.ok(visit);
     }
 
-    @GetMapping("/getVisits/{id}") //pobranie wizyt danego pacjenta
-    public List<Visit> getVisitsByUserId(@PathVariable long id){
-        return visitService.getVisitsByUserId(id);
-    }
-
 }

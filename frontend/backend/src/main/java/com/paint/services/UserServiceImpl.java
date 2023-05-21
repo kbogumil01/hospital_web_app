@@ -43,9 +43,7 @@ public class UserServiceImpl implements UserService{
             if(passwordService.validatePassword(hash,user.getPassword())){ //funkcja do sprawdzenia czy hasło sie zgadza
                 // uwierzytelnianie się powiodło
                 String role=userRepository.findByLogin(user.getLogin()).get(0).getRole(); //żeby serwer wiedział jaki typ usera sie zalogował
-                long id=userRepository.findByLogin(user.getLogin()).get(0).getId();
                 user.setRole(role);
-                user.setId(id);
                 return user;
             }else
             { //niepoprawne hasło

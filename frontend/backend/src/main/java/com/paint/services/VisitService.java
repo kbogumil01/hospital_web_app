@@ -9,6 +9,4 @@ import java.util.List;
 public interface VisitService {
 
     Visit addVisitToPatient(Long id, Visit visit);
-
-    List<Visit> getVisitsByUserId(long id);
 }
