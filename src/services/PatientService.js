@@ -22,6 +22,11 @@ class PatientService{
     updatePatient(patient,id){
         return axios.put(PATIENT_API_BASE_URL+"/"+id, patient)
     }
+
+    getPatientByUserId(id){
+        return axios.get(PATIENT_API_BASE_URL+"/getByUser/"+id)
+    }
+    
 }
 // eslint-disable-next-line
 export default new PatientService();

@@ -29,7 +29,9 @@ const LoginPage = () => {
         UserService.loginUser(user)
         .then((response)=>{
             console.log(response);
-            navigate("/"); //na razie tutaj do main menu
+            const id=response.data.id;
+            sessionStorage.setItem('id',id);
+            navigate(`/`); //na razie tutaj do main menu
         })
         .catch((error)=>{
             setFailedLogin(true)
@@ -76,7 +78,6 @@ const LoginPage = () => {
                 
         </div>
         </div>
-        
     </div>
   )
 }

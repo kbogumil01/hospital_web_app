@@ -1,11 +1,11 @@
 import React from 'react'
 import { useEffect,useState } from 'react';
-import { useNavigate,useParams } from 'react-router';
+import { useNavigate} from 'react-router';
 import PatientService from '../services/PatientService';
 
 const UpdatePatient = () => {
     const navigate = useNavigate();
-    const {id}=useParams();
+    const id=sessionStorage.getItem("patient_id")
     const [patient, setPatient] = useState({
         id: id,
         firstName:"",
@@ -35,7 +35,7 @@ const UpdatePatient = () => {
         e.preventDefault();
         PatientService.updatePatient(patient, id)
         .then((response)=>{
-            navigate("/patientList");
+            navigate("/userPage");
         })
         .catch((error)=>{
             console.log(error);
@@ -80,7 +80,7 @@ const UpdatePatient = () => {
                     Update
                 </button>
                 <button
-                onClick={()=>navigate("/patientList")}
+                onClick={()=>navigate("/userPage")}
                 className='rounded text-white font-semibold bg-red-500  hover:bg-red-900 py-2 px-6'>
                     Cancel
                 </button>

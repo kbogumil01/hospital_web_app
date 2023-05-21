@@ -3,12 +3,16 @@ import PatientService from '../services/PatientService';
 import { useNavigate } from 'react-router';
 
 const AddPatient = () => {
+    const userId=sessionStorage.getItem('id');
   
     const [patient, setPatient] = useState({
         id: "",
         firstName:"",
         lastName:"",
         emailId:"",
+        user:{
+            "id":userId
+        }
     });
 
     const navigate=useNavigate();
@@ -23,7 +27,7 @@ const AddPatient = () => {
         PatientService.savePatient(patient)
         .then((response)=>{
             console.log(response);
-            navigate("/patientList")
+            navigate("/userPage")
         })
         .catch((error)=>{
             console.log(error);
@@ -85,13 +89,9 @@ const AddPatient = () => {
                 </button>
                 
             </div>
-            <button onClick={()=> navigate("/patientList")}
-                className='rounded bg-blue-600 text-white px-6 py-2 font-semibold hover:bg-blue-900 mt-7 block'>
-                    View all Patients...
-            </button>
-            <button onClick={()=> navigate("/mainMenu")}
+            <button onClick={()=> navigate("/UserPage")}
                 className='rounded bg-blue-600 text-white px-6 py-2 font-semibold hover:bg-blue-900 mt-4'>
-                    Main Menu
+                    User Menu
             </button>
         </div>
     </div>
